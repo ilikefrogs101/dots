@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, ... }:
 let
-  godot4-mono = pkgs.callPackage /home/ilikefrogs101/Documents/Development/Nix/Godot-4-Mono/default.nix {};
+  godot4-mono = pkgs.callPackage /home/ilikefrogs101/Documents/Development/Nix-Packages/Godot-4-Mono/default.nix {};
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -154,7 +154,8 @@ in {
     fuzzel
     waybar
     gnupg
-    sway-contrib.grimshot
+    grim
+    slurp
     wlsunset
     wl-clipboard
     swaylock

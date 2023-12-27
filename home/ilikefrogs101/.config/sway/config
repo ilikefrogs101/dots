@@ -205,8 +205,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl s 1%+
 bindsym XF86MonBrightnessDown exec brightnessctl s 1%-
 
 # Screenshot
-bindsym $mod+Shift+r exec grimshot --notify copy area -
-bindsym $mod+Alt+r exec grimshot --notify copy screen -
+bindsym $mod+Shift+r exec wl-copy < <(grim -g "$(slurp)" -)
+bindsym $mod+Control+r exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).png
 
 # Lock Screen
 bindsym Insert exec 'swaylock -f -c 000000'
