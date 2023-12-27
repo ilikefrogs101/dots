@@ -137,6 +137,8 @@ in {
     imv
     ranger
     vlc
+    atool
+    zip
     unzip
     pulsemixer
     glib

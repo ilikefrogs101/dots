@@ -1,4 +1,4 @@
 export VISUAL=nvim
-export EDITOR="$VISUAL"
+export EDITOR=nvim
 
 export MOZ_ENABLE_WAYLAND=1
