@@ -2,7 +2,7 @@
 let
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
-    ref = "nixos-23.05";
+    ref = "nixos-23.11";
   });
 in
 {
@@ -18,18 +18,17 @@ in
     plugins = {
       lightline.enable = true;
     };
-    maps = {
-      normal = {
-        "zz" = {
-          noremap = true;
-          action = ":update<CR>";
-        };
-        "f" = {
-          noremap = true;
-          action = ":NERDTreeToggle<CR>";
-        };
-      };
-    };
+
+    keymaps = [
+      {
+        key = "zz";
+        action = ":update<CR>";
+      }
+      {
+        key = "f";
+        action = ":NERDTreeToggle<CR>";
+      }
+    ];
 
     extraPlugins = with pkgs.vimPlugins; [ 
       lightline-ale
