@@ -17,9 +17,12 @@ in {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bluetooth
-  hardware.bluetooth.enable = false;
-  hardware.bluetooth.powerOnBoot = false;
-  services.blueman.enable = false;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
+  # Touchscreen and Stylus
+  hardware.opentabletdriver.enable = true;
 
   # Power management
   powerManagement.enable = true;
@@ -116,7 +119,7 @@ in {
   };
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # $ nix search
   environment.systemPackages = with pkgs; [
     # Personal
     librewolf
@@ -141,6 +144,7 @@ in {
     zip
     unzip
     pulsemixer
+    bottom
     glib
     gh
     git
@@ -176,9 +180,11 @@ in {
     };
   };
 
-  programs.bash.shellAliases = {
+  programs.fish.enable = true;
+  programs.fish.shellAbbrs = {
     config = "git --git-dir=$HOME/config/ --work-tree=/";
     backup = "git --git-dir=$HOME/backup/ --work-tree=/";
+    update_dns = "sudo hblock -O /etc/nixos/hosts -H none";
   };
 
   services.gnome.gnome-keyring.enable = true;
