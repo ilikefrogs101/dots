@@ -17,9 +17,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Touchscreen and Stylus
-  hardware.opentabletdriver.enable = true;
-
   # OpenGL
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [intel-media-driver];
@@ -79,7 +76,6 @@
 
     # Essential
     firefox
-    #libreoffice
     libqalculate
     hblock
     gpg-tui
