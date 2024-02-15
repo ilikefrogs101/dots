@@ -25,6 +25,13 @@
         ];
 	specialArgs = { inherit inputs; };
       };
+      someone_server = inputs.nixpkgs.lib.nixosSystem {
+	modules = [
+          ./hosts/someone_server/configuration/configuration.nix
+	  ./hosts/someone_server/home/home.nix
+        ];
+	specialArgs = { inherit inputs; };
+      };
     };
   };
 }
