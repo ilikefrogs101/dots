@@ -83,7 +83,6 @@ in
     vscodium-fhs
     blender
     prismlauncher
-    unityhub 
 
     # Essential
     firefox
