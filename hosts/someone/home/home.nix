@@ -40,7 +40,6 @@
     programs.home-manager.enable = true;
 
     home.packages = with pkgs; [
-      inputs.nixpkgs-previous.legacyPackages.x86_64-linux.webcord
     ];
   };
 }
