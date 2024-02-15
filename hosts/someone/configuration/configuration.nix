@@ -78,7 +78,7 @@ in
   # $ nix search
   environment.systemPackages = with pkgs; [
     # Personal
-    webcord
+    inputs.nixpkgs-previous.legacyPackages.x86_64-linux.librewolf
     godot4-mono
     vscodium-fhs
     blender
