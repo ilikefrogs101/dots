@@ -3,7 +3,7 @@
   programs.sway.enable = true;
   programs.sway.wrapperFeatures.gtk = true;
 
-  home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.extraSpecialArgs = { inherit config; };
   home-manager.users.ilikefrogs101 = 
   {
     home.file = {
