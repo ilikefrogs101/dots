@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -7,13 +7,6 @@
     ./system/nvim.nix
     
     ./apps/steam.nix
-  ];
-
-  # Manually link non-nix dots
-  systemd.tmpfiles.rules = [
-    "L /home/ilikefrogs101/.config/ranger/ - - - - /home/ilikefrogs101/Documents/nixos/hosts/someone/linked-dots/ranger/"
-    "L /home/ilikefrogs101/.config/sway/ - - - - /home/ilikefrogs101/Documents/nixos/hosts/someone/linked-dots/sway/"
-    "L /home/ilikefrogs101/.config/swaync/ - - - - /home/ilikefrogs101/Documents/nixos/hosts/someone/linked-dots/swaync/"
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -28,16 +21,18 @@
       ./system/fuzzel.nix
       ./system/gtk.nix
       ./system/mimeapps.nix
+      ./system/ranger.nix
+      ./system/swaync.nix
       ./system/waybar.nix
 
       ./apps/librewolf.nix
     ];
 
+    programs.home-manager.enable = true;
+
     home.username = "ilikefrogs101";
     home.homeDirectory = "/home/ilikefrogs101";
     home.stateVersion = "23.11"; 
-
-    programs.home-manager.enable = true;
 
     home.packages = with pkgs; [
     ];
