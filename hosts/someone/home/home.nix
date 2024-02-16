@@ -11,7 +11,6 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = { inherit inputs; };
-
   home-manager.users.ilikefrogs101 =
   {
     imports = [

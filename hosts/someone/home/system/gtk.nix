@@ -1,6 +1,6 @@
 {pkgs, inputs, ...}:
 let
-  posy-cursors = pkgs.callPackage ../../../../packages/posy-cursors/default.nix {};
+  posy-cursors = pkgs.callPackage ../../../../packages-modules/packages/posy-cursors/default.nix {};
 in 
 {
   home.file.".icons/default".source = "${posy-cursors}/share/icons/Posy_Cursor_Black";

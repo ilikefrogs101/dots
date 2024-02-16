@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, inputs,... }:
 let
-  godot4-mono = pkgs.callPackage ../../../packages/godot4-mono/default.nix {};
+  godot4-mono = pkgs.callPackage ../../../packages-modules/packages/godot4-mono/default.nix {};
 in 
 {
   imports = [
