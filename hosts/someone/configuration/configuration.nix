@@ -86,7 +86,7 @@ in
 
     # Essential
     firefox
-    libreoffice
+    onlyoffice-bin
     sticky
     foliate
     gnome-feeds

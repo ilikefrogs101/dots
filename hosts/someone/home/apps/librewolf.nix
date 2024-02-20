@@ -11,6 +11,8 @@
       "signon.management.page.breach-alerts.enabled" = false;
       "network.http.referer.XOriginPolicy" = 2;
       "privacy.resistFingerprinting.letterboxing" = true;
+      
+      "layout.spellcheckDefault" = 0;
     };
   };
 }
