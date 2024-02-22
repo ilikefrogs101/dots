@@ -24,6 +24,7 @@
       ./system/swaync.nix
       ./system/waybar.nix
 
+      ./apps/codium.nix
       ./apps/librewolf.nix
     ];
 
