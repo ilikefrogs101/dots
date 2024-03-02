@@ -15,6 +15,7 @@
   {
     imports = [
       ./system/bottom.nix
+      ./system/direnv.nix
       ./system/fish.nix
       ./system/foot.nix
       ./system/fuzzel.nix
