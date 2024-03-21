@@ -4,9 +4,12 @@ exec {
   swaync
   autotiling
   activate-linux -f "fira code" -c .6-.6-.6-1 -V 75 -d
+  echo $(brightnessctl get) > ~/.current_screen_brightness
   swayidle -w \
-    timeout 250 "brightnessctl set 5%" resume "brightnessctl set 30%+" \
-    timeout 500 'swaylock -F -e -c 000000 -K --font inconsolata'
+    timeout 250 "foot --app-id=tui_screensaver asciiquarium -s &" \
+    #timeout 250 "brightnessctl set 5% resume brightnessctl set $(cat ~/.current_screen_brightness)" \
+    timeout 500 'swaylock -F -e -c 000000 -K --font inconsolata' \
+    before-sleep 'swaylock -F -e -c 000000 -K --font inconsolata'
 }
 
 exec_always {
@@ -192,8 +195,8 @@ bindsym $mod+x exec foot btm
 bindsym $mod+c exec foot ranger
 
 # Brightness
-bindsym XF86MonBrightnessDown exec brightnessctl set 1%-
-bindsym XF86MonBrightnessUp exec brightnessctl set 1%+
+bindsym XF86MonBrightnessDown exec 'brightnessctl set 1%- && echo $(brightnessctl get) > ~/.current_screen_brightness'
+bindsym XF86MonBrightnessUp exec 'brightnessctl set 1%+ && echo $(brightnessctl get) > ~/.current_screen_brightness'
 
 # Volume
 bindsym XF86AudioLowerVolume exec amixer set Master 1%-
@@ -208,8 +211,10 @@ bindsym $mod+alt+r exec grim -g "$(slurp -d)" "Pictures/Screenshots/screenshot-$
 bindsym $mod+alt+a exec grim "Pictures/Screenshots/screenshot-$(date '+%H-%M-%S_%Y-%m-%d').png"
 
 # Lock Screen
-for_window [app_id="wlroots"] fullscreen enable
-bindsym Insert exec 'swaylock -F -e -c 000000 -K --font inconsolata && foot sway'
+for_window [app_id="wlroots"] fullscreen global 
+for_window [app_id="tui_screensaver"] fullscreen global 
+bindsym insert exec 'swaylock -F -e -c 000000 -K --font inconsolata && foot sway'
+bindsym shift+insert exec 'foot --app-id=tui_screensaver asciiquarium -s &'
 
 # Notifications
 bindsym $mod+z exec swaync-client -t

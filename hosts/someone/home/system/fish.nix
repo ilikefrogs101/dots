@@ -9,6 +9,8 @@
         export EDITOR=nvim
         export MOZ_ENABLE_WAYLAND=1
             
+        direnv hook fish | source
+
         if test -e ~/.last_fish_open
             if [ (date '+%Y-%m-%d') != (cat ~/.last_fish_open) ]
                 builtin history clear
