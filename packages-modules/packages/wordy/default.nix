@@ -3,36 +3,46 @@
 , fetchFromGitLab
 , bash
 , makeWrapper
-, lolcat
+, bc
 , scowl
+, wordlist ? "${scowl}/share/dict/words.txt"
+, preferrededitor ? "$EDITOR"
 }:
 stdenv.mkDerivation {
   pname = "wordy";
-  version = "08049f6";
+  version = "1.0.0";
   src = fetchFromGitLab {
     owner = "christosangel";
     repo = "wordy";
-    rev = "79debaf64a3af34264291e49db1f7a3d466e1101";
-    hash = "sha256-wI7h3Eddl8K/hdVRdDscL6QSPIcnML5DlwG30GB1tNI=";
+    rev = "16693b4cfc00b627c2e9487ab1c744752e6779d3";
+    hash = "sha256-4hhTotU4+RpjCwhUndEbTsbQGKXXGczQzHaiz3OSKzI=";
   };
   buildInputs = [ bash ];
   nativeBuildInputs = [ makeWrapper ];
   runtimeDependencies = [
-    lolcat
     scowl
+    bc
   ];
+
+  patchPhase = ''
+    echo "mkdir -p ~/.local/share/wordy/" >> wordy.sh    
+    sed -i '272s|.*|  WORD_LIST=${wordlist}\n  PREFERRED_EDITOR=${preferrededitor}|' wordy.sh
+    sed -i '265,271d' wordy.sh
+    sed -i 's|$HOME/.local/share/wordy/wordy.png|$(dirname "$0")/../share/icon.png|g' wordy.sh
+  '';
   installPhase = ''
     mkdir -p $out/bin
-    cp wordy.sh $out/bin/wordy.sh
-    sed -i 's#WORD_LIST="/usr/share/dict/words"#WORD_LIST=${scowl}/share/dict/words.txt#' $out/bin/wordy.sh
-    wrapProgram $out/bin/wordy.sh --prefix PATH : ${lib.makeBinPath [ bash lolcat scowl ]}
+    mkdir -p $out/share
+    cp wordy.sh $out/bin/wordy
+    cp wordy.png $out/share/icon.png
+    wrapProgram $out/bin/wordy --prefix PATH : ${lib.makeBinPath [ bash bc ]}
   '';
 
   meta = with lib; {
     homepage = "https://gitlab.com/christosangel/wordy";
     description = "Wordy is a TUI word spelling puzzle in bash. You have 6 guesses to find out the secret 5-letter word.";
     license = licenses.gpl2Plus;
-    platforms = [ "i686-linux" "x86_64-linux" "aarch64-linux" ];
+    platforms = lib.platforms.unix;
     maintainers = with maintainers; [ ilikefrogs101 ];
     mainProgram = "wordy";
   };

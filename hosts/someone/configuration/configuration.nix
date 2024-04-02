@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, lib, pkgs, inputs,... }:
 let
-  #godot4-mono = pkgs.callPackage ../../../packages-modules/packages/godot4-mono/default.nix {};
+  godot4-mono = pkgs.callPackage ../../../packages-modules/packages/godot4-mono/default.nix {};
   wordy = pkgs.callPackage ../../../packages-modules/packages/wordy/default.nix {};
 in 
 {
@@ -80,13 +80,14 @@ in
   environment.systemPackages = with pkgs; [
     # Personal
     inputs.nixpkgs-previous.legacyPackages.x86_64-linux.webcord
-    #godot4-mono
+    godot4-mono
     wordy
     blender
     prismlauncher
     zig
     zls
     asciiquarium-transparent
+    texliveMedium
 
     # Essential
     firefox

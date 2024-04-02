@@ -8,6 +8,7 @@
     enable = true;
     options = {
       number = true;
+      syntax = "on";
       swapfile = false;
 	    backup = false;
 	    termguicolors = true;
@@ -44,16 +45,16 @@
     colorschemes.gruvbox.contrastDark = "soft";
 
     plugins.lightline.enable = true;
+    plugins.vimtex.enable = true;
+    plugins.vimtex.settings.view_method = "default";
 
     extraPlugins = with pkgs.vimPlugins; [ 
       lightline-ale
-      nerdtree
+      vimtex
       nvim-surround
       gruvbox
     ];
     extraConfigVim = ''
-      let g:NERDTreeDirArrowExpandable="+"
-      let g:NERDTreeDirArrowCollapsible="-"
     '';
     extraConfigLua = ''
     '';

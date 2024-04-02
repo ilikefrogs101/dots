@@ -11,7 +11,7 @@
     nixpkgs-previous = { url = "github:nixos/nixpkgs/e49c28b3baa3a93bdadb8966dd128f9985ea0a09"; };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-23.11";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
