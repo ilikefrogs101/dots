@@ -17,6 +17,7 @@
       }
     ];
     userSettings = {
+      "workbench.colorTheme" = pkgs.lib.mkDefault "Gruvbox Dark Medium";
 	    "terminal.integrated.defaultProfile.linux" = "fish";
       "zig.path" = "${pkgs.zig}/bin/zig";
 	    "zig.zls.path" = "${pkgs.zls}/bin/zls";
@@ -24,6 +25,5 @@
     };
   };
 
-  specialisation.dark.configuration.programs.vscode.userSettings."workbench.colorTheme" = "Gruvbox Dark Medium";
   specialisation.light.configuration.programs.vscode.userSettings."workbench.colorTheme" = "Gruvbox Light Medium";
 }

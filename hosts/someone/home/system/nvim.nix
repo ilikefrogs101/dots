@@ -40,9 +40,9 @@
 
     clipboard.providers.wl-copy.enable = true;
 
-    #colorscheme = "gruvbox";
-    colorschemes.gruvbox.enable = true;
-    colorschemes.gruvbox.contrastDark = "soft";
+    colorscheme = "gruvbox";
+    #colorschemes.gruvbox.enable = true;
+    #colorschemes.gruvbox.contrastDark = "soft";
 
     plugins.lightline.enable = true;
     plugins.vimtex.enable = true;

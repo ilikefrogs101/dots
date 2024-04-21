@@ -20,10 +20,14 @@ in
       package = posy-cursors;
       name = "Posy's Cursor Black";
     };
+    gtk2.extraConfig = pkgs.lib.mkDefault "gtk-application-prefer-dark-theme = true";
+    gtk3.extraConfig = pkgs.lib.mkDefault { gtk-application-prefer-dark-theme = true; };
+    gtk4.extraConfig = pkgs.lib.mkDefault { gtk-application-prefer-dark-theme = true; }; 
   };
-  qt = {
-    enable = true;
-    platformTheme = "gtk3";
-    style.name = "adwaita-dark";
+
+  specialisation.light.configuration.gtk = {
+    gtk2.extraConfig = "gtk-application-prefer-dark-theme = false";
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = false; };
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = false; }; 
   };
 }

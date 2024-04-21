@@ -26,12 +26,13 @@
                 layer = "top";
                 exit-on-keyboard-focus-loss = "yes";
             };
-            colors = {
-                background="32302ff2";
-                text="fbf1c7ff";
-                match="ff6000ff";
-                selection="1793d1ff";
-                selection-text="120024ff";
+            colors = pkgs.lib.mkDefault {
+                background="282828ff";
+                text="ebdbb2ff";
+                match="928374ff";
+                selection="a89984ff";
+                selection-text="ebdbb2ff";
+                selection-match="928374ff";
                 border="ebdbb2ff";
             };
             border = {
@@ -39,5 +40,15 @@
                 radius="0";
             };
         };
+    };
+    
+    specialisation.light.configuration.programs.fuzzel.settings.colors = {
+        background="fbf1c7ff";
+        text="3c3836ff";
+        match="928374ff";
+        selection="7c6f64ff";
+        selection-text="3c3836ff";
+        selection-match="928374ff";
+        border="3c3836ff";
     };
 }

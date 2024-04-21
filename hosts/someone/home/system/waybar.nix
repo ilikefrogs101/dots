@@ -15,7 +15,7 @@
                 # Choose the order of the modules
                 "modules-left"= ["sway/workspaces"];
                 "modules-center"= ["user"];
-                "modules-right"= ["pulseaudio" "backlight" "network" "cpu" "memory" "battery" "clock" "tray"];
+                "modules-right"= ["pulseaudio" "backlight" "network" "cpu" "memory" "battery" "clock" "privacy" "tray"];
 
                 # Modules configuration
                 "tray"= {
@@ -23,7 +23,7 @@
                     "spacing"= 10;
                 };
                 "clock"= {
-		    "interval"= 1;
+		            "interval"= 1;
                     "format"= "{:%H:%M:%S}";
                     "tooltip-format"= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                     "format-alt"= "{:%Y-%m-%d}";
@@ -70,23 +70,23 @@
         };
         style = ''
             @define-color foreground #ebdbb2;
-            @define-color background #32302f;
-            @define-color regular0 #1d2021; /*black*/
+            @define-color background #282828;
+            @define-color regular0 #a89984; /*gray*/
             @define-color regular1 #cc241d; /*red*/
             @define-color regular2 #98971a; /*green*/
             @define-color regular3 #d79921; /*yellow*/
             @define-color regular4 #458588; /*blue*/
             @define-color regular5 #b16286; /*purple*/
             @define-color regular6 #689d6a; /*aqua*/
-            @define-color regular7 #a89984; /*gray*/
-            @define-color bright0 #282828;  /*bright black*/
+            @define-color regular7 #d65d0e; /*orange*/
+            @define-color bright0 #928374;  /*bright gray*/
             @define-color bright1 #fb4934;  /*bright red*/
             @define-color bright2 #b8bb26;  /*bright green*/
             @define-color bright3 #fabd2f;  /*bright yellow*/
             @define-color bright4 #83a598;  /*bright blue*/
             @define-color bright5 #d3869b;  /*bright purple*/
             @define-color bright6 #8ec07c;  /*bright aqua*/
-            @define-color bright7 #928374;  /*bright gray*/
+            @define-color bright7 #fe8019;  /*bright orange*/
 
             * {
                 /* `otf-font-awesome` is required to be installed for icons */
@@ -129,7 +129,7 @@
             }
 
             #workspaces button:hover {
-                background: @regular7;
+                background: @regular0;
                 text-shadow: 0.25px 0.25px;
             }
 
@@ -138,7 +138,7 @@
                 box-shadow: 0 0 0 3;
                 color: @foreground;
                 text-shadow: 0.45px 0.45px;
-                background-color: @bright7;
+                background-color: @bright0;
             }
 
             #workspaces button.urgent {
@@ -160,7 +160,8 @@
             #mode,
             #idle_inhibitor,
             #scratchpad,
-            #mpd {
+            #mpd,
+            #privacy {
                 padding: 0 10px;
                 color: @foreground;
                 border-radius: 15;
@@ -184,7 +185,7 @@
             }
 
             #clock {
-                background-color: @bright7;
+                background-color: @bright0;
             }
 
             #battery {
@@ -211,15 +212,15 @@
             }
 
             #cpu {
-                background-color: @bright7;
+                background-color: @bright0;
             }
 
             #memory {
-                background-color: @bright7;
+                background-color: @bright0;
             }
 
             #network {
-                background-color: @bright7;
+                background-color: @bright0;
             }
 
             #network.disconnected {
@@ -227,11 +228,11 @@
             }
 
             #pulseaudio {
-                background-color: @bright7;
+                background-color: @bright0;
             }
 
             #backlight {
-                background-color: @bright7;
+                background-color: @bright0;
             }
 
             #pulseaudio.muted {
@@ -239,7 +240,7 @@
             }
 
             #tray {
-                background-color: @bright7;
+                background-color: @bright0;
                 margin-right: 5;
             }
 

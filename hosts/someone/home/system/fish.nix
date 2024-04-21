@@ -3,23 +3,23 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-	set fish_greeting
+	    set fish_greeting
 
-        export VISUAL=nvim
-        export EDITOR=nvim
-        export MOZ_ENABLE_WAYLAND=1
+      export VISUAL=nvim
+      export EDITOR=nvim
+      export MOZ_ENABLE_WAYLAND=1
             
-        direnv hook fish | source
+      direnv hook fish | source
 
-        if test -e ~/.last_fish_open
-            if [ (date '+%Y-%m-%d') != (cat ~/.last_fish_open) ]
-                builtin history clear
-                echo (date '+%Y-%m-%d') > ~/.last_fish_open
-            end
-        else
-            builtin history clear
+      if test -e ~/.last_fish_open
+        if [ (date '+%Y-%m-%d') != (cat ~/.last_fish_open) ]
+          builtin history clear
             echo (date '+%Y-%m-%d') > ~/.last_fish_open
-        end
+          end
+      else
+        builtin history clear
+        echo (date '+%Y-%m-%d') > ~/.last_fish_open
+      end
     '';
 
     shellAbbrs = {
