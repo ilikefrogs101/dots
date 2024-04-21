@@ -18,7 +18,7 @@ exec_always {
 
 input * {
   tap enabled
-  xkb_layout "us(colemak),au"
+  xkb_layout "us(colemak_dh),au"
   xkb_options "grp:shifts_toggle"
 }
 
@@ -192,7 +192,6 @@ bindsym $mod+p mode "resize"
 # Assorted Actions
 bindsym XF86Calculator exec foot qalc
 bindsym $mod+x exec foot btm
-bindsym $mod+c exec foot ranger
 
 # Brightness
 bindsym XF86MonBrightnessDown exec 'brightnessctl set 1%- && echo $(brightnessctl get) > ~/.current_screen_brightness'

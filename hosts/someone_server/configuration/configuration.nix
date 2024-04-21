@@ -75,7 +75,7 @@
   # $ nix search
   environment.systemPackages = with pkgs; [
     # Personal
-    vscodium-fhs
+    librewolf
 
     # Essential
     firefox

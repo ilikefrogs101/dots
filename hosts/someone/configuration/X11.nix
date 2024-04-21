@@ -6,7 +6,7 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = true;
-    layout = "us(colemak),au";
+    layout = "us(colemak_dh),au";
     xkbOptions = "grp:shifts_toggle";
   };
 

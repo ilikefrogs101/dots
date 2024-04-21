@@ -4,7 +4,6 @@
     inputs.home-manager.nixosModules.home-manager
 
     ./system/sway.nix
-    ./system/nvim.nix
     
     ./apps/steam.nix
   ];
@@ -15,18 +14,19 @@
   {
     imports = [
       ./system/bottom.nix
+      ./system/darkman.nix
       ./system/direnv.nix
       ./system/fish.nix
       ./system/foot.nix
       ./system/fuzzel.nix
       ./system/gtk.nix
       ./system/mimeapps.nix
+      ./system/nvim.nix
       ./system/ranger.nix
       ./system/swaync.nix
       ./system/waybar.nix
 
       ./apps/codium.nix
-      ./apps/librewolf.nix
     ];
 
     programs.home-manager.enable = true;
@@ -36,6 +36,7 @@
     home.stateVersion = "23.11"; 
 
     home.packages = with pkgs; [
+      home-manager
     ];
   };
 }

@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }:
 {
   imports = [
-    inputs.nixvim.nixosModules.nixvim
+    inputs.nixvim.homeManagerModules.nixvim
   ];
 
   programs.nixvim = {
@@ -30,11 +30,11 @@
       }
       {
         key = "y";
-	action = ''"+y'';
+	      action = ''"+y'';
       }
       {
         key = "p";
-	action = ''"+P'';
+	      action = ''"+P'';
       }
     ];
 
@@ -46,11 +46,9 @@
 
     plugins.lightline.enable = true;
     plugins.vimtex.enable = true;
-    plugins.vimtex.settings.view_method = "default";
 
     extraPlugins = with pkgs.vimPlugins; [ 
-      lightline-ale
-      vimtex
+      lightline-ale 
       nvim-surround
       gruvbox
     ];

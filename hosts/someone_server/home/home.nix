@@ -28,7 +28,7 @@
       ./system/mimeapps.nix
       ./system/waybar.nix
 
-      ./apps/librewolf.nix
+      ./apps/codium.nix
     ];
 
     home.username = "ilikefrogs101";

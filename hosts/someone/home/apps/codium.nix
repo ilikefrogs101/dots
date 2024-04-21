@@ -4,9 +4,10 @@
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
-        ms-dotnettools.csharp
-        jdinhlife.gruvbox
-        jnoortheen.nix-ide
+      ms-dotnettools.csharp
+      jdinhlife.gruvbox
+      jnoortheen.nix-ide
+	    james-yu.latex-workshop
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-zig";
@@ -16,11 +17,13 @@
       }
     ];
     userSettings = {
-        "workbench.colorTheme" = "Gruvbox Dark Hard";
-	"terminal.integrated.defaultProfile.linux" = "fish";
-        "zig.path" = "${pkgs.zig}/bin/zig";
-	"zig.zls.path" = "${pkgs.zls}/bin/zls";
-        "zig.initialSetupDone" = true;
+	    "terminal.integrated.defaultProfile.linux" = "fish";
+      "zig.path" = "${pkgs.zig}/bin/zig";
+	    "zig.zls.path" = "${pkgs.zls}/bin/zls";
+      "zig.initialSetupDone" = true;
     };
   };
+
+  specialisation.dark.configuration.programs.vscode.userSettings."workbench.colorTheme" = "Gruvbox Dark Medium";
+  specialisation.light.configuration.programs.vscode.userSettings."workbench.colorTheme" = "Gruvbox Light Medium";
 }

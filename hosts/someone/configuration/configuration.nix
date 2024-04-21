@@ -65,7 +65,7 @@ in
   users.users.ilikefrogs101 = {
     isNormalUser = true;
     description = "ilikefrogs101";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "dialout"];
     packages = with pkgs; [];
   };
 
@@ -79,7 +79,9 @@ in
   # $ nix search
   environment.systemPackages = with pkgs; [
     # Personal
-    inputs.nixpkgs-previous.legacyPackages.x86_64-linux.webcord
+    librewolf
+    mullvad-browser
+    webcord
     godot4-mono
     wordy
     blender
@@ -103,8 +105,10 @@ in
     swayimg
     ranger
     vlc
+    sox
     atool
     zip
+    ripgrep
     unzip
     pulsemixer
     glib

@@ -1,7 +1,6 @@
 { config, pkgs, inputs, ...}:
 {
   programs.sway.enable = true;
-  #programs.sway.package = inputs.unstable.legacyPackages.x86_64-linux.sway;
   programs.sway.wrapperFeatures.gtk = true;
 
   programs.xwayland.enable = true;
