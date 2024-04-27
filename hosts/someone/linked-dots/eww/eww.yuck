@@ -5,6 +5,13 @@
 		:space-evenly false
 	(children)))
 
+(defwidget text-module-tool-tip [?class]
+	(box :class "${class} text-module-tool-tip"
+		:orientation "h"
+		:halign "end"
+		:space-evenly false
+	(children)))
+
 (defwidget date_time []
 	(text-module :class "date_time"
 		(label :text date_time_poll)))
@@ -61,6 +68,15 @@
 		(label :text "${memory_used_poll} / ${memory_total_poll}"))
 )
 
+(defwidget network []
+	(tooltip
+		(text-module-tool-tip :class "ip"
+		    (label :text "public: ${public_ip_poll} private: ${private_ip_poll}"))
+	    (text-module :class "network"
+			(image :path "Images/Wifi.svg" :image-width "20")
+		    (label :text "${network_name_poll} ${network_strength_poll}%")))
+)
+
 (defpoll date_time_poll :interval "1s" "date '+%Y-%m-%d %X'")
 (defpoll volume_poll :interval "16ms" "amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }' | sed s/%//")
 (defpoll speaker_mute_poll :interval "16ms" "if amixer get Master | grep -q off; then echo false; else echo true; fi")
@@ -71,6 +87,11 @@
 (defpoll cpu_poll :interval "1m" "uptime | awk '{print $8}' | sed s/,//")
 (defpoll memory_used_poll :interval "1m" "free --human --si | grep Mem | awk '{printf $3}'")
 (defpoll memory_total_poll :interval "1m" "free --human --si | grep Mem | awk '{printf $2}'")
+(defpoll network_name_poll :interval "1m" "iwgetid -r")
+(defpoll network_strength_poll :interval "1m" "awk 'NR==3 {print int($3*100/70)}' /proc/net/wireless")
+(defpoll private_ip_poll :interval "1m" "ip addr show | grep inet | grep -v 127.0.0.1 | awk '{print $2}' | cut -d '/' -f1 | sed -n '2p'")
+(defpoll public_ip_poll :interval "1m" "curl -s ifconfig.me")
+
 
 (defwidget main_bar []
 (box
@@ -79,7 +100,7 @@
 		:class "l_bar"
 		:spacing 8
 		:space-evenly false
-		(date_time))
+		(network))
 	(box :halign "center"
 		:orientation "h"
 		:class "c_bar"

@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # Start Background Processes
+riverctl spawn 'eww daemon'
+riverctl spawn 'eww open bar'
 riverctl spawn 'swaybg -i /home/ilikefrogs101/Pictures/Wallpapers/Wombat.jpg -m fill'
 riverctl spawn "wlsunset -l -35 -L 149"
 riverctl spawn activate-linux -f "fira code" -c .6-.6-.6-1 -V 75 -d
@@ -112,6 +114,18 @@ do
     riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 1%-'
 done
 
+# Other Normal Only Hotkeys
+# Applications
+riverctl map normal None XF86Calculator spawn 'foot qalc'
+riverctl map normal Super X             spawn 'foot btm'
+riverctl map normal Super Z             spawn 'swaync-client -t'
+
+# Screenshotting
+riverctl map normal Super+Shift R spawn 'grim -g "$(slurp -d)" - | wl-copy'
+riverctl map normal Super+Shift A spawn 'grim - | wl-copy'
+riverctl map normal Super+Alt   R spawn 'grim -g "$(slurp -d)" "Pictures/Screenshots/screenshot-$(date '+%H-%M-%S_%Y-%m-%d').png"'
+riverctl map normal Super+Alt   A spawn 'grim "Pictures/Screenshots/screenshot-$(date '+%H-%M-%S_%Y-%m-%d').png"'
+
 # Set background and border color
 riverctl background-color 0x002b36
 riverctl border-color-focused 0x93a1a1
@@ -120,8 +134,7 @@ riverctl border-color-unfocused 0x586e75
 # Make all views with app-id "bar" and any title use client-side decorations
 riverctl rule-add -app-id "bar" csd
 
-# Set the default layout generator to be rivertile and start it.
-# River will send the process group of the init executable SIGTERM on exit.
+# Layout Generation
 riverctl default-layout rivertile
 rivertile -view-padding 6 -outer-padding 6 &
 

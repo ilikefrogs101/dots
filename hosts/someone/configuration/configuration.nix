@@ -80,7 +80,6 @@ in
   environment.systemPackages = with pkgs; [
     # Personal
     librewolf
-    eww-wayland
     signal-desktop
     mullvad-browser
     webcord
@@ -127,6 +126,7 @@ in
     libnotify
     waybar
     gnupg
+    wirelesstools
     grim
     slurp
     wlsunset
