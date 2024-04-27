@@ -80,6 +80,7 @@ in
   environment.systemPackages = with pkgs; [
     # Personal
     librewolf
+    signal-desktop
     mullvad-browser
     webcord
     godot4-mono
@@ -131,6 +132,7 @@ in
     wl-clipboard
     swaylock
     swayidle
+    swaybg
     waypipe
   ];
 

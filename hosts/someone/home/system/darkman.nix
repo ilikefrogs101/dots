@@ -1,7 +1,7 @@
 {pkgs, inputs, ...}:
 {
   services.darkman = {
-    enable = true;
+    enable = false;
     settings = {
       lat = -35.0;
       lng = 149.0;

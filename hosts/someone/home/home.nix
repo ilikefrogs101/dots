@@ -3,7 +3,8 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
 
-    ./system/sway.nix
+    #./system/sway.nix
+    ./system/river.nix
     
     ./apps/steam.nix
   ];

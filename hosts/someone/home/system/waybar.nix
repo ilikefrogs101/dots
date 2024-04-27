@@ -7,7 +7,7 @@
             {
                 # "layer"= "top"; # Waybar at top layer
                 # "position"= "top";
-                "height"= 15;
+                # "height"= 15;
                 #"width"= 1700;
                 "margin"= "5; 5; 5; 5";
                 "spacing"= 4; # Gaps between modules (4px)
@@ -15,7 +15,7 @@
                 # Choose the order of the modules
                 "modules-left"= ["sway/workspaces"];
                 "modules-center"= ["user"];
-                "modules-right"= ["pulseaudio" "backlight" "network" "cpu" "memory" "battery" "clock" "privacy" "tray"];
+                "modules-right"= ["pulseaudio" "backlight" "network" "cpu" "memory" "battery" "clock" "tray"];
 
                 # Modules configuration
                 "tray"= {
@@ -23,7 +23,7 @@
                     "spacing"= 10;
                 };
                 "clock"= {
-		            "interval"= 1;
+		    "interval"= 1;
                     "format"= "{:%H:%M:%S}";
                     "tooltip-format"= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                     "format-alt"= "{:%Y-%m-%d}";
