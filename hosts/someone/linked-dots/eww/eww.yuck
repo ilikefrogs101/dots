@@ -14,6 +14,7 @@
 
 (defwidget date_time []
 	(text-module :class "date_time"
+	    (image :path "Images/Clock.svg" :image-width "20")
 		(label :text date_time_poll)))
 
 (defwidget volume []
