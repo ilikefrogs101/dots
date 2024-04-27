@@ -80,6 +80,7 @@ in
   environment.systemPackages = with pkgs; [
     # Personal
     librewolf
+    eww-wayland
     signal-desktop
     mullvad-browser
     webcord

@@ -3,7 +3,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
 
-    #./system/sway.nix
+    ./system/sway.nix
     ./system/river.nix
     
     ./apps/steam.nix
@@ -18,6 +18,7 @@
       ./system/bottom.nix
       ./system/darkman.nix
       ./system/direnv.nix
+      ./system/eww.nix
       ./system/fish.nix
       ./system/foot.nix
       ./system/fuzzel.nix

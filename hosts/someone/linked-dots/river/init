@@ -1,0 +1,127 @@
+#!/bin/sh
+
+# Start Background Processes
+riverctl spawn 'swaybg -i /home/ilikefrogs101/Pictures/Wallpapers/Wombat.jpg -m fill'
+riverctl spawn "wlsunset -l -35 -L 149"
+riverctl spawn activate-linux -f "fira code" -c .6-.6-.6-1 -V 75 -d
+riverctl spawn swaync
+riverctl spawn "swayidle -w \
+    timeout 250 'foot --app-id=screensaver -s -t &' \
+    timeout 500 'swaylock -F -e -c 000000 -K --font inconsolata' \
+    before-sleep 'swaylock -F -e -c 000000 -K --font inconsolata'"
+
+# Set Keyboard Layout and Input Settings
+riverctl keyboard-layout -options 'grp:shifts_toggle' 'us(colemak_dh),au'
+riverctl input "pointer-1267-12600-MSFT0001:01_04F3:3138_Touchpad" tap enabled
+riverctl set-repeat 50 300
+
+# Spawn Launchers
+riverctl map normal Super Return spawn foot
+riverctl map normal Super S spawn fuzzel
+
+riverctl map normal Super+Shift Q close
+
+riverctl map normal Super+Shift F exit
+
+# View Management
+riverctl map normal Super N focus-view next
+riverctl map normal Super E focus-view previous
+
+riverctl map normal Super+Shift N swap next
+riverctl map normal Super+Shift E swap previous
+
+riverctl map normal Super Period focus-output next
+riverctl map normal Super Comma focus-output previous
+
+riverctl map normal Super+Shift Period send-to-output next
+riverctl map normal Super+Shift Comma send-to-output previous
+
+riverctl map normal Super+Shift Return zoom
+
+riverctl map normal Super M send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal Super I send-layout-cmd rivertile "main-ratio +0.05"
+
+riverctl map normal Super+Shift M send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super+Shift I send-layout-cmd rivertile "main-count -1"
+
+riverctl map normal Super+Alt M move left 100
+riverctl map normal Super+Alt N move down 100
+riverctl map normal Super+Alt E move up 100
+riverctl map normal Super+Alt I move right 100
+
+riverctl map normal Super+Alt+Control M snap left
+riverctl map normal Super+Alt+Control N snap down
+riverctl map normal Super+Alt+Control E snap up
+riverctl map normal Super+Alt+Control I snap right
+
+riverctl map normal Super+Alt+Shift M resize horizontal -100
+riverctl map normal Super+Alt+Shift N resize vertical 100
+riverctl map normal Super+Alt+Shift E resize vertical -100
+riverctl map normal Super+Alt+Shift I resize horizontal 100
+
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+riverctl map-pointer normal Super BTN_MIDDLE toggle-float
+
+# Tag and Focus Switching
+for i in $(seq 1 9)
+do
+    tags=$((1 << ($i - 1)))
+
+    riverctl map normal Super $i set-focused-tags $tags
+
+    riverctl map normal Super+Shift $i set-view-tags $tags
+
+    riverctl map normal Super+Control $i toggle-focused-tags $tags
+
+    riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
+done
+
+# Super+0 to focus all tags
+# Super+Shift+0 to tag focused view with all tags
+all_tags=$(((1 << 32) - 1))
+riverctl map normal Super 0 set-focused-tags $all_tags
+riverctl map normal Super+Shift 0 set-view-tags $all_tags
+
+# View State Management 
+riverctl map normal Super Space toggle-float
+riverctl map normal Super T toggle-fullscreen
+
+# Orientation 
+riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
+riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
+riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
+riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
+
+# Passthrough Mode
+riverctl declare-mode passthrough
+riverctl map normal Super F11 enter-mode passthrough
+riverctl map passthrough Super F11 enter-mode normal
+
+# Media Control
+for mode in normal locked
+do
+    # Control Audio
+    riverctl map $mode None XF86AudioRaiseVolume  spawn 'amixer set Master 1%+'
+    riverctl map $mode None XF86AudioLowerVolume  spawn 'amixer set Master 1%-'
+    riverctl map $mode None XF86AudioMute         spawn 'amixer set Master toggle'
+    riverctl map $mode None XF86AudioMicMute      spawn 'amixer set Capture toggle'
+
+    # Control Brightness 
+    riverctl map $mode None XF86MonBrightnessUp   spawn 'brightnessctl set +1%'
+    riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 1%-'
+done
+
+# Set background and border color
+riverctl background-color 0x002b36
+riverctl border-color-focused 0x93a1a1
+riverctl border-color-unfocused 0x586e75
+
+# Make all views with app-id "bar" and any title use client-side decorations
+riverctl rule-add -app-id "bar" csd
+
+# Set the default layout generator to be rivertile and start it.
+# River will send the process group of the init executable SIGTERM on exit.
+riverctl default-layout rivertile
+rivertile -view-padding 6 -outer-padding 6 &
+

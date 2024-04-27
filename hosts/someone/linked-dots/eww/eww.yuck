@@ -1,0 +1,109 @@
+(defwidget text-module [?class]
+	(box :class "${class} text-module"
+  		:orientation "h"
+		:halign "end"
+		:space-evenly false
+	(children)))
+
+(defwidget date_time []
+	(text-module :class "date_time"
+		(label :text date_time_poll)))
+
+(defwidget volume []
+	(text-module :class "volume"
+	(image :path {
+		microphone_mute_poll == "false" ? "Images/Microphone_Mute.svg"
+		:"Images/Microphone.svg"
+	} :image-width 20)
+	(image :path 
+		{
+		speaker_mute_poll == "false" ? "Images/Speaker_Mute.svg"
+		:volume_poll == 100 ? "Images/Speaker_Full.svg" 
+		:volume_poll > 80 ? "Images/Speaker_80.svg" 
+		:volume_poll > 50 ? "Images/Speaker_50.svg" 
+		:volume_poll > 20 ? "Images/Speaker_20+.svg"
+		:volume_poll > 0 ? "Images/Speaker_20-.svg" 
+		:"Images/Speaker_0.svg"
+		} :image-width 20)
+	(label :text "${volume_poll}%")))
+
+(defwidget brightness []
+	(text-module :class "brightness"
+		(image :path "Images/Sun.svg" :image-width "20")
+		(label :text brightness_poll)))
+
+(defwidget battery []
+	(text-module :class "battery"
+		(image :path 
+			{EWW_BATTERY.BAT0.status == "Full" ? "Images/Battery_Full.svg"
+			:EWW_BATTERY.BAT0.status == "Charging" ? "Images/Battery_Charging.svg" 
+			:EWW_BATTERY.BAT0.capacity > 80 ? "Images/Battery_80.svg" 
+			:EWW_BATTERY.BAT0.capacity > 50 ? "Images/Battery_50.svg" 
+			:EWW_BATTERY.BAT0.capacity > 20 ? "Images/Battery_20.svg" 
+			:"Images/Battery_Empty.svg"} :image-width 20)
+		(label :text "${EWW_BATTERY.BAT0.capacity}%")))
+
+(defwidget disk []
+	(text-module :class "disk"
+		(image :path "Images/Disk.svg" :image-width "20")
+		(label :text "${disk_used_poll} / ${disk_total_poll}"))
+)
+
+(defwidget cpu []
+	(text-module :class "cpu"
+		(image :path "Images/CPU.svg" :image-width "20")
+		(label :text "${cpu_poll}%"))
+)
+
+(defwidget memory []
+	(text-module :class "memory"
+		(image :path "Images/Memory.svg" :image-width "20")
+		(label :text "${memory_used_poll} / ${memory_total_poll}"))
+)
+
+(defpoll date_time_poll :interval "1s" "date '+%Y-%m-%d %X'")
+(defpoll volume_poll :interval "16ms" "amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }' | sed s/%//")
+(defpoll speaker_mute_poll :interval "16ms" "if amixer get Master | grep -q off; then echo false; else echo true; fi")
+(defpoll microphone_mute_poll :interval "16ms" "if amixer get Capture | grep -q off; then echo false; else echo true; fi")
+(defpoll brightness_poll :interval "16ms" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4))}'")
+(defpoll disk_used_poll :interval "1m" "df -H / | grep /dev/ | awk '{print $3}'")
+(defpoll disk_total_poll :interval "1m" "df -H / | grep /dev/ | awk '{print $2}'")
+(defpoll cpu_poll :interval "1m" "uptime | awk '{print $8}' | sed s/,//")
+(defpoll memory_used_poll :interval "1m" "free --human --si | grep Mem | awk '{printf $3}'")
+(defpoll memory_total_poll :interval "1m" "free --human --si | grep Mem | awk '{printf $2}'")
+
+(defwidget main_bar []
+(box
+	(box :halign "start"
+		:orientation "h"
+		:class "l_bar"
+		:spacing 8
+		:space-evenly false
+		(date_time))
+	(box :halign "center"
+		:orientation "h"
+		:class "c_bar"
+		:space-evenly false
+		(memory)
+		(cpu)
+		(disk)
+		(volume)
+		(brightness)
+		(battery))
+	(box :halign "end"
+		:orientation "h"
+		:class "l_bar"
+		:spacing 8
+		:space-evenly false
+		(date_time))))
+
+(defwindow bar
+	:monitor 0
+	:exclusive true
+		:geometry (geometry 
+		:x "0%"
+		:y "1%"
+		:width "98.5%"
+		:height "10px"
+		:anchor "top center")
+		(main_bar))

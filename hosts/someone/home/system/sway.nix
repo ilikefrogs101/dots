@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ...}:
 {
-  programs.sway.enable = true;
+  programs.sway.enable = false;
   programs.sway.wrapperFeatures.gtk = true;
 
   programs.xwayland.enable = true;
