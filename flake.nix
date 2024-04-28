@@ -16,21 +16,22 @@
     };
   };
 
-  outputs = inputs: {    
+  outputs = inputs: {
+    formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     nixosConfigurations = {
       someone = inputs.nixpkgs.lib.nixosSystem {
-	modules = [
+        modules = [
           ./hosts/someone/configuration/configuration.nix
-	  ./hosts/someone/home/home.nix
+          ./hosts/someone/home/home.nix
         ];
-	specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs; };
       };
       someone_server = inputs.nixpkgs.lib.nixosSystem {
-	modules = [
+        modules = [
           ./hosts/someone_server/configuration/configuration.nix
-	  ./hosts/someone_server/home/home.nix
+          ./hosts/someone_server/home/home.nix
         ];
-	specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs; };
       };
     };
   };

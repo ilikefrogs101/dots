@@ -85,13 +85,13 @@
 (defpoll brightness_poll :interval "16ms" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4))}'")
 (defpoll disk_used_poll :interval "1m" "df -H / | grep /dev/ | awk '{print $3}'")
 (defpoll disk_total_poll :interval "1m" "df -H / | grep /dev/ | awk '{print $2}'")
-(defpoll cpu_poll :interval "1m" "uptime | awk '{print $8}' | sed s/,//")
+(defpoll cpu_poll :interval "1m" "uptime | awk '{print $10}' | sed s/,//")
 (defpoll memory_used_poll :interval "1m" "free --human --si | grep Mem | awk '{printf $3}'")
 (defpoll memory_total_poll :interval "1m" "free --human --si | grep Mem | awk '{printf $2}'")
 (defpoll network_name_poll :interval "1m" "iwgetid -r")
 (defpoll network_strength_poll :interval "1m" "awk 'NR==3 {print int($3*100/70)}' /proc/net/wireless")
 (defpoll private_ip_poll :interval "1m" "ip addr show | grep inet | grep -v 127.0.0.1 | awk '{print $2}' | cut -d '/' -f1 | sed -n '2p'")
-(defpoll public_ip_poll :interval "1m" "curl -s ifconfig.me")
+(defpoll public_ip_poll :interval "1m" "curl -s ident.me")
 
 
 (defwidget main_bar []

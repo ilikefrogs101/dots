@@ -51,8 +51,8 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "godot4-mono";
-  version = "4.2.1-stable";
-  commitHash = "b09f793f564a6c95dc76acc654b390e68441bd01";
+  version = "4.2.2-stable";
+  commitHash = "15073afe3856abd2aa1622492fe50026c7d63dc1";
 
   nugetDeps = mkNugetDeps { name = "deps"; nugetDeps = import ./deps.nix; };
 
@@ -78,7 +78,7 @@ stdenv.mkDerivation rec {
     owner = "godotengine";
     repo = "godot";
     rev = commitHash;
-    hash = "sha256-Q6Og1H4H2ygOryMPyjm6kzUB6Su6T9mJIp0alNAxvjQ";
+    hash = "sha256-anJgPEeHIW2qIALMfPduBVgbYYyz1PWCmPsZZxS9oHI=";
   };
 
   nativeBuildInputs = [
