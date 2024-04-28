@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ...}:
+{ config, pkgs, inputs, ... }:
 {
   home.file = {
     ".config/swaync/config.json" = { source = ../../linked-dots/swaync/config.json; target = ".config/swaync/config.json"; };

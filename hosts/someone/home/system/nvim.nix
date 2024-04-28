@@ -10,19 +10,18 @@
       number = true;
       syntax = "on";
       swapfile = false;
-	    backup = false;
-	    termguicolors = true;
-	    clipboard = "unnamedplus";
+      backup = false;
+      termguicolors = true;
+      clipboard = "unnamedplus";
     };
 
-    plugins = { 
-    };
+    plugins = { };
 
     keymaps = [
       {
         key = "zz";
         action = ":update<CR>";
-	      options.noremap = true;
+        options.noremap = true;
       }
       {
         key = "f";
@@ -30,11 +29,11 @@
       }
       {
         key = "y";
-	      action = ''"+y'';
+        action = ''"+y'';
       }
       {
         key = "p";
-	      action = ''"+P'';
+        action = ''"+P'';
       }
     ];
 
@@ -47,8 +46,8 @@
     plugins.lightline.enable = true;
     plugins.vimtex.enable = true;
 
-    extraPlugins = with pkgs.vimPlugins; [ 
-      lightline-ale 
+    extraPlugins = with pkgs.vimPlugins; [
+      lightline-ale
       nvim-surround
       gruvbox
     ];
@@ -56,5 +55,5 @@
     '';
     extraConfigLua = ''
     '';
-  };  
+  };
 }

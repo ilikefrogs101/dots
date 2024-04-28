@@ -1,11 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, inputs,... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
-    
+
     ./keyrings.nix
     ./power-management.nix
     ./wireless.nix
@@ -22,7 +22,7 @@
 
   # OpenGL
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [intel-media-driver];
+  hardware.opengl.extraPackages = with pkgs; [ intel-media-driver ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -61,12 +61,12 @@
   users.users.ilikefrogs101 = {
     isNormalUser = true;
     description = "ilikefrogs101";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [ ];
   };
 
   # Set package settings configuration
-  nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;

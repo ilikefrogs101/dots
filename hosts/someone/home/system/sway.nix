@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ...}:
+{ config, pkgs, inputs, ... }:
 {
   programs.sway.enable = false;
   programs.sway.wrapperFeatures.gtk = true;

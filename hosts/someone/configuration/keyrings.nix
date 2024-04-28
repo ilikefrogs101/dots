@@ -2,7 +2,7 @@
 {
   programs.seahorse.enable = true;
   programs.gnupg.agent = {
-   enable = true;
+    enable = true;
     enableSSHSupport = true;
   };
 }

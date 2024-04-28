@@ -1,6 +1,6 @@
-{pkgs, inputs, ...}:
+{ pkgs, inputs, ... }:
 {
-    programs.bottom = {
-        enable = true;
-    };
+  programs.bottom = {
+    enable = true;
+  };
 }

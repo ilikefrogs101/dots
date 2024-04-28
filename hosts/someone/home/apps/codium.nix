@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}:
+{ pkgs, inputs, ... }:
 {
   programs.vscode = {
     enable = true;
@@ -30,9 +30,9 @@
     ];
     userSettings = {
       "workbench.colorTheme" = pkgs.lib.mkDefault "Gruvbox Dark Medium";
-	    "terminal.integrated.defaultProfile.linux" = "fish";
+      "terminal.integrated.defaultProfile.linux" = "fish";
       "zig.path" = "${pkgs.zig}/bin/zig";
-	    "zig.zls.path" = "${pkgs.zls}/bin/zls";
+      "zig.zls.path" = "${pkgs.zls}/bin/zls";
       "zig.initialSetupDone" = true;
     };
   };

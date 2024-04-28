@@ -3,7 +3,7 @@
   # SSH
   services.openssh = {
     enable = true;
-    ports = [58];
+    ports = [ 58 ];
   };
 
   # VPN
@@ -19,18 +19,18 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.enable = false;
-  
+
   # Wifi
   networking.wireless = {
     iwd = {
       enable = true;
       settings = {
         General = {
-	  EnableNetworkConfiguration=true;
-	};
-	Settings = {
-	  AutoConnect = true;
-	};
+          EnableNetworkConfiguration = true;
+        };
+        Settings = {
+          AutoConnect = true;
+        };
       };
     };
     userControlled.enable = true;

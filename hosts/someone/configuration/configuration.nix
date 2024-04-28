@@ -1,15 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, lib, pkgs, inputs,... }:
+{ config, lib, pkgs, inputs, ... }:
 let
-  godot4-mono = pkgs.callPackage ../../../packages-modules/packages/godot4-mono/default.nix {};
-  wordy = pkgs.callPackage ../../../packages-modules/packages/wordy/default.nix {};
-in 
+  godot4-mono = pkgs.callPackage ../../../packages-modules/packages/godot4-mono/default.nix { };
+  wordy = pkgs.callPackage ../../../packages-modules/packages/wordy/default.nix { };
+in
 {
   imports = [
     ./hardware-configuration.nix
-    
+
     ./keyrings.nix
     ./power-management.nix
     ./wireless.nix
@@ -26,7 +26,7 @@ in
 
   # OpenGL
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [intel-media-driver];
+  hardware.opengl.extraPackages = with pkgs; [ intel-media-driver ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -65,13 +65,13 @@ in
   users.users.ilikefrogs101 = {
     isNormalUser = true;
     description = "ilikefrogs101";
-    extraGroups = ["networkmanager" "wheel" "dialout"];
-    packages = with pkgs; [];
+    extraGroups = [ "networkmanager" "wheel" "dialout" ];
+    packages = with pkgs; [ ];
   };
 
   # Set package settings configuration
-  nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
-  
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
