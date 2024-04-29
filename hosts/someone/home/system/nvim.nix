@@ -6,7 +6,7 @@
 
   programs.nixvim = {
     enable = true;
-    options = {
+    opts = {
       number = true;
       syntax = "on";
       swapfile = false;

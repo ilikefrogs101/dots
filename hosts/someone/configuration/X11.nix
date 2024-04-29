@@ -6,8 +6,10 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = true;
-    layout = "us(colemak_dh),au";
-    xkbOptions = "grp:shifts_toggle";
+    xkb = {
+      layout = "us(colemak_dh),au";
+      options = "grp:shifts_toggle";
+    };
   };
 
   console.useXkbConfig = true;
