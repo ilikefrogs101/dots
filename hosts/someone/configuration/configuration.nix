@@ -82,7 +82,7 @@ in
     signal-desktop
     mullvad-browser
     webcord
-    godot4-mono
+    #godot4-mono
     wordy
     blender
     prismlauncher

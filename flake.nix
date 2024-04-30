@@ -4,33 +4,28 @@
     nixpkgs-stable = { url = "github:nixos/nixpkgs/nixos-23.11"; };
     nixpkgs-unstable = { url = "github:nixos/nixpkgs/nixos-unstable"; };
     home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/nixvim/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
   };
 
-  outputs =
-    { self
-    , nixpkgs-stable
-    , nixpkgs-unstable
-    , home-manager
-    , nixvim
-    }@inputs:
+  outputs = inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs-unstable.legacyPackages.${system};
-      pkgs-stable = nixpkgs-stable.legacyPackages.${system};
 
-      lib = nixpkgs-unstable.lib;
+      pkgs = inputs.nixpkgs-stable.legacyPackages.${system};
+      unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+
+      lib = inputs.nixpkgs-stable.lib;
     in
     {
       formatter.x86_64-linux = pkgs.nixpkgs-fmt;
-      
+
       nixosConfigurations = {
         someone = lib.nixosSystem {
           modules = [
