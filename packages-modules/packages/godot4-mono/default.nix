@@ -36,8 +36,6 @@
 , withUdev ? true
 , withTouch ? true
 , dotnet-sdk
-, mono
-, dotnet-runtime
 , callPackage
 }:
 
@@ -50,7 +48,7 @@ let
     else "${k}=${builtins.toJSON v}");
 in
 stdenv.mkDerivation rec {
-  pname = "godot4-mono";
+  pname = "godot4-dotnet";
   version = "4.2.2-stable";
   commitHash = "15073afe3856abd2aa1622492fe50026c7d63dc1";
 
@@ -86,9 +84,7 @@ stdenv.mkDerivation rec {
     autoPatchelfHook
     installShellFiles
     python3
-    mono
     dotnet-sdk
-    dotnet-runtime
   ];
 
   buildInputs = [
@@ -108,9 +104,7 @@ stdenv.mkDerivation rec {
     libXfixes
     libxkbcommon
     alsa-lib
-    mono
     dotnet-sdk
-    dotnet-runtime
   ]
   ++ lib.optional withPulseaudio libpulseaudio
   ++ lib.optional withDbus dbus
@@ -178,16 +172,16 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p "$out/bin"
-    cp bin/godot.* $out/bin/godot4-mono
+    cp bin/godot.* $out/bin/godot4-dotnet
     cp -r bin/GodotSharp/ $out/bin/
 
     installManPage misc/dist/linux/godot.6
 
     mkdir -p "$out"/share/{applications,icons/hicolor/scalable/apps}
-    cp misc/dist/linux/org.godotengine.Godot.desktop "$out/share/applications/org.godotengine.Godot4-Mono.desktop"
-    substituteInPlace "$out/share/applications/org.godotengine.Godot4-Mono.desktop" \
-      --replace "Exec=godot" "Exec=$out/bin/godot4-mono" \
-      --replace "Godot Engine" "Godot Engine ${version} (Mono, $(echo "${withPrecision}" | sed 's/.*/\u&/') Precision)"
+    cp misc/dist/linux/org.godotengine.Godot.desktop "$out/share/applications/org.godotengine.Godot4-dotnet.desktop"
+    substituteInPlace "$out/share/applications/org.godotengine.Godot4-dotnet.desktop" \
+      --replace "Exec=godot" "Exec=$out/bin/godot4-dotnet" \
+      --replace "Godot Engine" "Godot Engine ${version} (dotnet, $(echo "${withPrecision}" | sed 's/.*/\u&/') Precision)"
     cp icon.svg "$out/share/icons/hicolor/scalable/apps/godot.svg"
     cp icon.png "$out/share/icons/godot.png"
   '';
@@ -198,7 +192,7 @@ stdenv.mkDerivation rec {
     license = licenses.mit;
     platforms = [ "i686-linux" "x86_64-linux" "aarch64-linux" ];
     maintainers = with maintainers; [ ilikefrogs101 ];
-    mainProgram = "godot4-mono";
+    mainProgram = "godot4-dotnet";
   };
 
   passthru = {
