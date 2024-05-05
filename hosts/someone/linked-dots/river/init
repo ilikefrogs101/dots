@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # Start Background Processes
-riverctl spawn 'eww daemon'
-riverctl spawn 'eww open bar'
+riverctl spawn 'eww --config ~/.config/eww/Bar/ open bar'
 riverctl spawn 'swaybg -i /home/ilikefrogs101/Pictures/Wallpapers/Wombat.jpg -m fill'
 riverctl spawn "wlsunset -l -35 -L 149"
 riverctl spawn activate-linux -f "fira code" -c .6-.6-.6-1 -V 75 -d
@@ -88,7 +87,7 @@ riverctl map normal Super 0 set-focused-tags $all_tags
 riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
 # View State Management 
-riverctl map normal Super Space toggle-float
+riverctl map normal Super+Shift Space toggle-float
 riverctl map normal Super T toggle-fullscreen
 
 # Orientation 
@@ -121,6 +120,7 @@ done
 riverctl map normal None XF86Calculator spawn 'foot qalc'
 riverctl map normal Super X             spawn 'foot btm'
 riverctl map normal Super Z             spawn 'swaync-client -t'
+riverctl map normal Super space         spawn 'eww --config ~/.config/eww/SystemTray/ open --toggle tray'
 
 # Screenshotting
 riverctl map normal Super+Shift R spawn 'grim -g "$(slurp -d)" - | wl-copy'

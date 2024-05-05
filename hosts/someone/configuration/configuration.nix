@@ -19,6 +19,7 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Touchscreen and Stylus
   hardware.opentabletdriver.enable = true;
@@ -82,7 +83,7 @@ in
     signal-desktop
     mullvad-browser
     webcord
-    #godot4-mono
+    godot4-mono
     wordy
     blender
     prismlauncher

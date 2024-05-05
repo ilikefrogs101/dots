@@ -72,7 +72,7 @@
 (defwidget network []
 	(tooltip
 		(text-module-tool-tip :class "ip"
-		    (label :text "public: ${public_ip_poll} private: ${private_ip_poll}"))
+		    (label :text "private ip: ${private_ip_poll}"))
 	    (text-module :class "network"
 			(image :path "Images/Wifi.svg" :image-width "20")
 		    (label :text "${network_name_poll} ${network_strength_poll}%")))
@@ -91,11 +91,10 @@
 (defpoll network_name_poll :interval "1m" "iwgetid -r")
 (defpoll network_strength_poll :interval "1m" "awk 'NR==3 {print int($3*100/70)}' /proc/net/wireless")
 (defpoll private_ip_poll :interval "1m" "ip addr show | grep inet | grep -v 127.0.0.1 | awk '{print $2}' | cut -d '/' -f1 | sed -n '2p'")
-(defpoll public_ip_poll :interval "1m" "curl -s ident.me")
 
 
 (defwidget main_bar []
-(box
+    (box
 	(box :halign "start"
 		:orientation "h"
 		:class "l_bar"
@@ -114,7 +113,7 @@
 		(battery))
 	(box :halign "end"
 		:orientation "h"
-		:class "l_bar"
+		:class "r_bar"
 		:spacing 8
 		:space-evenly false
 		(date_time))))
