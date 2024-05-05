@@ -181,7 +181,7 @@ stdenv.mkDerivation rec {
     cp misc/dist/linux/org.godotengine.Godot.desktop "$out/share/applications/org.godotengine.Godot4-dotnet.desktop"
     substituteInPlace "$out/share/applications/org.godotengine.Godot4-dotnet.desktop" \
       --replace "Exec=godot" "Exec=$out/bin/godot4-dotnet" \
-      --replace "Godot Engine" "Godot Engine ${version} (dotnet, $(echo "${withPrecision}" | sed 's/.*/\u&/') Precision)"
+      --replace "Godot Engine" "Godot Engine ${version} (dotnet, ${withPrecision} precision)"
     cp icon.svg "$out/share/icons/hicolor/scalable/apps/godot.svg"
     cp icon.png "$out/share/icons/godot.png"
   '';
@@ -193,10 +193,10 @@ stdenv.mkDerivation rec {
     platforms = [ "i686-linux" "x86_64-linux" "aarch64-linux" ];
     maintainers = with maintainers; [ ilikefrogs101 ];
     mainProgram = "godot4-dotnet";
+
   };
 
   passthru = {
     make-deps = callPackage ./make-deps.nix { };
   };
 }
-

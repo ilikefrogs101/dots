@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, lib, pkgs, inputs, ... }:
 let
-  godot4-mono = pkgs.callPackage ../../../packages-modules/packages/godot4-mono/default.nix { };
+  godot4-dotnet = pkgs.callPackage ../../../packages-modules/packages/godot4-dotnet/default.nix { };
   wordy = pkgs.callPackage ../../../packages-modules/packages/wordy/default.nix { };
 in
 {
@@ -83,7 +83,7 @@ in
     signal-desktop
     mullvad-browser
     webcord
-    godot4-mono
+    godot4-dotnet
     wordy
     blender
     prismlauncher
