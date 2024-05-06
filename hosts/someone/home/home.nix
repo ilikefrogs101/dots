@@ -24,6 +24,7 @@
         ./system/fuzzel.nix
         ./system/gtk.nix
         ./system/mimeapps.nix
+	./system/nix-index.nix
         ./system/nvim.nix
         ./system/ranger.nix
         ./system/swaync.nix
