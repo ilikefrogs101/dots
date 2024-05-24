@@ -6,6 +6,8 @@
   xdg.portal.wlr.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+  programs.dconf.enable = true;
+
   services.xserver = {
     enable = true;
     displayManager.startx.enable = true;

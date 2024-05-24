@@ -16,7 +16,6 @@
     {
       imports = [
         ./system/bottom.nix
-        ./system/darkman.nix
         ./system/direnv.nix
         ./system/eww.nix
         ./system/fish.nix
@@ -24,11 +23,10 @@
         ./system/fuzzel.nix
         ./system/gtk.nix
         ./system/mimeapps.nix
-	./system/nix-index.nix
+        ./system/nix-index.nix
         ./system/nvim.nix
         ./system/ranger.nix
         ./system/swaync.nix
-        ./system/waybar.nix
 
         ./apps/codium.nix
       ];

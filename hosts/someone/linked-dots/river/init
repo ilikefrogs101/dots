@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Start Background Processes
+riverctl spawn 'eww --config ~/.config/eww/SystemTray/ daemon'
 riverctl spawn 'eww --config ~/.config/eww/Bar/ open bar'
 riverctl spawn 'swaybg -i /home/ilikefrogs101/Pictures/Wallpapers/Wombat.jpg -m fill'
 riverctl spawn "wlsunset -l -35 -L 149"

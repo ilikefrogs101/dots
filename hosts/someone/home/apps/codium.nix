@@ -36,6 +36,4 @@
       "zig.initialSetupDone" = true;
     };
   };
-
-  specialisation.light.configuration.programs.vscode.userSettings."workbench.colorTheme" = "Gruvbox Light Medium";
 }

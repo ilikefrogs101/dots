@@ -5,6 +5,7 @@
 let
   godot4-dotnet = pkgs.callPackage ../../../packages-modules/packages/godot4-dotnet/default.nix { };
   wordy = pkgs.callPackage ../../../packages-modules/packages/wordy/default.nix { };
+  inupiaq-fonts = pkgs.callPackage ../../../packages-modules/packages/inupiaq-fonts/default.nix { };
 in
 {
   imports = [
@@ -101,6 +102,7 @@ in
     gnome-feeds
     activate-linux
     libqalculate
+    numbat
     hblock
     gpg-tui
     swayimg
@@ -145,6 +147,8 @@ in
     font-awesome
 
     corefonts
+
+    inupiaq-fonts
   ];
 
   # This value determines the NixOS release from which the default

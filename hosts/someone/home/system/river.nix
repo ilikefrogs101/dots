@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 {
   programs.river.enable = true;
+  #programs.river.package = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.river;
 
   programs.xwayland.enable = true;
 

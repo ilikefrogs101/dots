@@ -24,10 +24,9 @@ in
     gtk3.extraConfig = pkgs.lib.mkDefault { gtk-application-prefer-dark-theme = true; };
     gtk4.extraConfig = pkgs.lib.mkDefault { gtk-application-prefer-dark-theme = true; };
   };
-
-  specialisation.light.configuration.gtk = {
-    gtk2.extraConfig = "gtk-application-prefer-dark-theme = false";
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = false; };
-    gtk4.extraConfig = { gtk-application-prefer-dark-theme = false; };
-  };
+ 
+ xdg.systemDirs.data = [
+    "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+    "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+  ];
 }

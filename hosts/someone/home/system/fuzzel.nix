@@ -41,14 +41,4 @@
       };
     };
   };
-
-  specialisation.light.configuration.programs.fuzzel.settings.colors = {
-    background = "fbf1c7ff";
-    text = "3c3836ff";
-    match = "928374ff";
-    selection = "7c6f64ff";
-    selection-text = "3c3836ff";
-    selection-match = "928374ff";
-    border = "3c3836ff";
-  };
 }
