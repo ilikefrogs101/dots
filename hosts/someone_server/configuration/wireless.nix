@@ -9,7 +9,7 @@
   # Enable networking
   networking.hostName = "someone_server"; # Define your hostname.
   networking.extraHosts = ''
-    ${builtins.readFile ../../../NetworkHosts};
+    ${builtins.readFile ../../../network-hosts};
   '';
 
   # networking.firewall.allowedTCPPorts = [ ... ];
