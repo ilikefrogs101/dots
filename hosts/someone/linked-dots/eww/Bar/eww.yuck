@@ -26,14 +26,14 @@
 	(image :path 
 		{
 		speaker_mute_poll == "false" ? "Images/Speaker_Mute.svg"
-		:volume_poll == 100 ? "Images/Speaker_Full.svg" 
-		:volume_poll > 80 ? "Images/Speaker_80.svg" 
-		:volume_poll > 50 ? "Images/Speaker_50.svg" 
-		:volume_poll > 20 ? "Images/Speaker_20+.svg"
-		:volume_poll > 0 ? "Images/Speaker_20-.svg" 
+		:numeral_volme_poll == 100 ? "Images/Speaker_Full.svg" 
+		:numeral_volme_poll > 80 ? "Images/Speaker_80.svg" 
+		:numeral_volme_poll > 50 ? "Images/Speaker_50.svg" 
+		:numeral_volme_poll > 20 ? "Images/Speaker_20+.svg"
+		:numeral_volme_poll > 0 ? "Images/Speaker_20-.svg" 
 		:"Images/Speaker_0.svg"
 		} :image-width 20)
-	(label :text "${volume_poll}%")))
+	(label :text "${selected_volume_poll}")))
 
 (defwidget brightness []
 	(text-module :class "brightness"
@@ -49,7 +49,7 @@
 			:EWW_BATTERY.BAT0.capacity > 50 ? "Images/Battery_50.svg" 
 			:EWW_BATTERY.BAT0.capacity > 20 ? "Images/Battery_20.svg" 
 			:"Images/Battery_Empty.svg"} :image-width 20)
-		(label :text "${EWW_BATTERY.BAT0.capacity}%")))
+		(label :text "${battery_capacity_poll}")))
 
 (defwidget disk []
 	(text-module :class "disk"
@@ -60,7 +60,7 @@
 (defwidget cpu []
 	(text-module :class "cpu"
 		(image :path "Images/CPU.svg" :image-width "20")
-		(label :text "${cpu_poll}%"))
+		(label :text "${cpu_poll}"))
 )
 
 (defwidget memory []
@@ -75,23 +75,26 @@
 		    (label :text "private ip: ${private_ip_poll}"))
 	    (text-module :class "network"
 			(image :path "Images/Wifi.svg" :image-width "20")
-		    (label :text "${network_name_poll} ${network_strength_poll}%")))
+		    (label :text "${network_name_poll} ${network_strength_poll}")))
 )
 
-(defpoll date_time_poll :interval "1s" "date '+%Y-%m-%d %X'")
-(defpoll volume_poll :interval "16ms" "amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }' | sed s/%//")
+(defvar use_kaktovic_numerals true)
+
+(defpoll date_time_poll :interval "1s"  "Scripts/date_time.sh")
+(defpoll numeral_volme_poll :interval "16ms" "amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }' | sed s/%//")
+(defpoll selected_volume_poll :interval "16ms" "Scripts/volume.sh")
 (defpoll speaker_mute_poll :interval "16ms" "if amixer get Master | grep -q off; then echo false; else echo true; fi")
 (defpoll microphone_mute_poll :interval "16ms" "if amixer get Capture | grep -q off; then echo false; else echo true; fi")
-(defpoll brightness_poll :interval "16ms" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4))}'")
-(defpoll disk_used_poll :interval "1m" "df -H / | grep /dev/ | awk '{print $3}'")
-(defpoll disk_total_poll :interval "1m" "df -H / | grep /dev/ | awk '{print $2}'")
-(defpoll cpu_poll :interval "1m" "uptime | awk '{print $10}' | sed s/,//")
-(defpoll memory_used_poll :interval "1m" "free --human --si | grep Mem | awk '{printf $3}'")
-(defpoll memory_total_poll :interval "1m" "free --human --si | grep Mem | awk '{printf $2}'")
-(defpoll network_name_poll :interval "1m" "iwgetid -r")
-(defpoll network_strength_poll :interval "1m" "awk 'NR==3 {print int($3*100/70)}' /proc/net/wireless")
-(defpoll private_ip_poll :interval "1m" "ip addr show | grep inet | grep -v 127.0.0.1 | awk '{print $2}' | cut -d '/' -f1 | sed -n '2p'")
-
+(defpoll brightness_poll :interval "16ms"  "Scripts/brightness.sh")
+(defpoll battery_capacity_poll :interval "30s" "Scripts/battery_capacity.sh")
+(defpoll disk_used_poll :interval "30s" "Scripts/disk_used.sh")
+(defpoll disk_total_poll :interval "30s" "Scripts/disk_total.sh")
+(defpoll cpu_poll :interval "1m" "Scripts/cpu.sh")
+(defpoll memory_used_poll :interval "30s" "Scripts/memory_used.sh")
+(defpoll memory_total_poll :interval "30s" "Scripts/memory_total.sh")
+(defpoll network_name_poll :interval "15r" "iwgetid -r")
+(defpoll network_strength_poll :interval "15s" "Scripts/network_strength.sh")
+(defpoll private_ip_poll :interval "15s" "Scripts/private_ip.sh")
 
 (defwidget main_bar []
     (box
