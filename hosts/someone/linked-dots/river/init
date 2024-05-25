@@ -14,7 +14,7 @@ riverctl spawn "swayidle -w \
 
 # Set Keyboard Layout and Input Settings
 riverctl keyboard-layout -options 'grp:shifts_toggle' 'us(colemak_dh),au'
-riverctl map normal Super+Alt Space '~/.config/eww/Bar/Scripts/toggle_kaktovic.sh'
+riverctl map normal Super Tab spawn '~/.config/eww/Bar/Scripts/toggle_kaktovic.sh'
 riverctl input "pointer-1267-12600-MSFT0001:01_04F3:3138_Touchpad" tap enabled
 riverctl set-cursor-warp on-focus-change
 riverctl focus-follows-cursor always
@@ -127,16 +127,13 @@ riverctl map normal Super space         spawn 'eww --config ~/.config/eww/System
 # Screenshotting
 riverctl map normal Super+Shift R spawn 'grim -g "$(slurp -d)" - | wl-copy'
 riverctl map normal Super+Shift A spawn 'grim - | wl-copy'
-riverctl map normal Super+Alt   R spawn 'grim -g "$(slurp -d)" "Pictures/Screenshots/screenshot-$(date '+%H-%M-%S_%Y-%m-%d').png"'
-riverctl map normal Super+Alt   A spawn 'grim "Pictures/Screenshots/screenshot-$(date '+%H-%M-%S_%Y-%m-%d').png"'\
+riverctl map normal Super+Alt   R spawn 'grim -g "$(slurp -d)" ~/Pictures/Screenshots/screenshot-$(date "+%H-%M-%S_%Y-%m-%d").png'
+riverctl map normal Super+Alt   A spawn 'grim ~/Pictures/Screenshots/screenshot-$(date "+%H-%M-%S_%Y-%m-%d").png'
 
 # Set background and border color
 riverctl background-color 0x002b36
 riverctl border-color-focused 0x93a1a1
-riverctl border-color-unfocused 0x586e75
-
-# Make all views with app-id "bar" and any title use client-side decorations
-riverctl rule-add -app-id "bar" csd
+riverctl border-color-unfocused 0x586e75 
 
 # Layout Generation
 riverctl default-layout rivertile

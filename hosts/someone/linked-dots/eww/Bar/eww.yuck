@@ -92,7 +92,7 @@
 (defpoll cpu_poll :interval "1m" "Scripts/cpu.sh")
 (defpoll memory_used_poll :interval "30s" "Scripts/memory_used.sh")
 (defpoll memory_total_poll :interval "30s" "Scripts/memory_total.sh")
-(defpoll network_name_poll :interval "15r" "iwgetid -r")
+(defpoll network_name_poll :interval "15s" "iwgetid -r")
 (defpoll network_strength_poll :interval "15s" "Scripts/network_strength.sh")
 (defpoll private_ip_poll :interval "15s" "Scripts/private_ip.sh")
 
