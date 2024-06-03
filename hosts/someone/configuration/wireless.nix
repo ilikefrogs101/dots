@@ -35,6 +35,12 @@
     };
     userControlled.enable = true;
   };
+  system.userActivationScripts.rfkillUnblockAll = {
+      text = ''
+      rfkill unblock all
+      '';
+      deps = [];
+  };
 
   # Bluetooth
   hardware.bluetooth.enable = true;
