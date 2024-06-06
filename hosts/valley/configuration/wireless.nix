@@ -11,7 +11,7 @@
   services.mullvad-vpn.package = pkgs.mullvad-vpn;
 
   # Enable networking
-  networking.hostName = "someone"; # Define your hostname.
+  networking.hostName = "valley"; # Define your hostname.
   networking.extraHosts = ''
     ${builtins.readFile ../../../network-hosts};
   '';

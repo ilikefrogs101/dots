@@ -88,7 +88,7 @@ in
     wordy
     blender
     prismlauncher
-    zig
+    zig_0_11
     zls
     asciiquarium-transparent
     texliveMedium

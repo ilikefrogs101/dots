@@ -1,0 +1,25 @@
+(defwidget text-module [?class]
+	(box :class "${class} text-module"
+  		:orientation "h"
+		:halign "end"
+		:space-evenly false
+	(children)))
+
+(defwidget system_tray []
+	(text-module :class "system_tray"
+		(systray
+	        :spacing 5
+		 	:prepend-new true
+			:icon-size 45
+			:space-evenly true)))
+
+(defwindow tray
+	:monitor 0
+	:exclusive false
+		:geometry (geometry 
+		:x "50%"
+		:y "2.5%"
+		:width "0%"
+		:height "0px"
+		:anchor "bottom center")
+		(system_tray))

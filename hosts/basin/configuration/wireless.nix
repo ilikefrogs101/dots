@@ -7,7 +7,7 @@
   };
 
   # Enable networking
-  networking.hostName = "someone_server"; # Define your hostname.
+  networking.hostName = "basin"; # Define your hostname.
   networking.extraHosts = ''
     ${builtins.readFile ../../../network-hosts};
   '';

@@ -1,0 +1,133 @@
+(defwidget text-module [?class]
+	(box :class "${class} text-module"
+  		:orientation "h"
+		:halign "end"
+		:space-evenly false
+	(children)))
+
+(defwidget text-module-tool-tip [?class]
+	(box :class "${class} text-module-tool-tip"
+		:orientation "h"
+		:halign "end"
+		:space-evenly false
+	(children)))
+
+(defwidget date_time []
+	(text-module :class "date_time"
+	    (image :path "Images/Clock.svg" :image-width "20")
+		(label :text date_time_poll)))
+
+(defwidget volume []
+	(text-module :class "volume"
+	(image :path {
+		microphone_mute_poll == "false" ? "Images/Microphone_Mute.svg"
+		:"Images/Microphone.svg"
+	} :image-width 20)
+	(image :path 
+		{
+		speaker_mute_poll == "false" ? "Images/Speaker_Mute.svg"
+		:numeral_volme_poll == 100 ? "Images/Speaker_Full.svg" 
+		:numeral_volme_poll > 80 ? "Images/Speaker_80.svg" 
+		:numeral_volme_poll > 50 ? "Images/Speaker_50.svg" 
+		:numeral_volme_poll > 20 ? "Images/Speaker_20+.svg"
+		:numeral_volme_poll > 0 ? "Images/Speaker_20-.svg" 
+		:"Images/Speaker_0.svg"
+		} :image-width 20)
+	(label :text "${selected_volume_poll}")))
+
+(defwidget brightness []
+	(text-module :class "brightness"
+		(image :path "Images/Sun.svg" :image-width "20")
+		(label :text brightness_poll)))
+
+(defwidget battery []
+	(text-module :class "battery"
+		(image :path 
+			{EWW_BATTERY.BAT0.status == "Full" ? "Images/Battery_Full.svg"
+			:EWW_BATTERY.BAT0.status == "Charging" ? "Images/Battery_Charging.svg" 
+			:EWW_BATTERY.BAT0.capacity > 80 ? "Images/Battery_80.svg" 
+			:EWW_BATTERY.BAT0.capacity > 50 ? "Images/Battery_50.svg" 
+			:EWW_BATTERY.BAT0.capacity > 20 ? "Images/Battery_20.svg" 
+			:"Images/Battery_Empty.svg"} :image-width 20)
+		(label :text "${battery_capacity_poll}")))
+
+(defwidget disk []
+	(text-module :class "disk"
+		(image :path "Images/Disk.svg" :image-width "20")
+		(label :text "${disk_used_poll} / ${disk_total_poll}"))
+)
+
+(defwidget cpu []
+	(text-module :class "cpu"
+		(image :path "Images/CPU.svg" :image-width "20")
+		(label :text "${cpu_poll}"))
+)
+
+(defwidget memory []
+	(text-module :class "memory"
+		(image :path "Images/Memory.svg" :image-width "20")
+		(label :text "${memory_used_poll} / ${memory_total_poll}"))
+)
+
+(defwidget network []
+	(tooltip
+		(text-module-tool-tip :class "ip"
+		    (label :text "private ip: ${private_ip_poll}"))
+	    (text-module :class "network"
+			(image :path "Images/Wifi.svg" :image-width "20")
+		    (label :text "${network_name_poll} ${network_strength_poll}")))
+)
+
+(defvar use_kaktovic_numerals true)
+
+(defpoll date_time_poll :interval "1s"  "Scripts/date_time.sh")
+(defpoll numeral_volme_poll :interval "16ms" "amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }' | sed s/%//")
+(defpoll selected_volume_poll :interval "16ms" "Scripts/volume.sh")
+(defpoll speaker_mute_poll :interval "16ms" "if amixer get Master | grep -q off; then echo false; else echo true; fi")
+(defpoll microphone_mute_poll :interval "16ms" "if amixer get Capture | grep -q off; then echo false; else echo true; fi")
+(defpoll brightness_poll :interval "16ms"  "Scripts/brightness.sh")
+(defpoll battery_capacity_poll :interval "30s" "Scripts/battery_capacity.sh")
+(defpoll disk_used_poll :interval "30s" "Scripts/disk_used.sh")
+(defpoll disk_total_poll :interval "30s" "Scripts/disk_total.sh")
+(defpoll cpu_poll :interval "1m" "Scripts/cpu.sh")
+(defpoll memory_used_poll :interval "30s" "Scripts/memory_used.sh")
+(defpoll memory_total_poll :interval "30s" "Scripts/memory_total.sh")
+(defpoll network_name_poll :interval "15s" "iwgetid -r")
+(defpoll network_strength_poll :interval "15s" "Scripts/network_strength.sh")
+(defpoll private_ip_poll :interval "15s" "Scripts/private_ip.sh")
+
+(defwidget main_bar []
+    (box
+	(box :halign "start"
+		:orientation "h"
+		:class "l_bar"
+		:spacing 8
+		:space-evenly false
+		(network))
+	(box :halign "center"
+		:orientation "h"
+		:class "c_bar"
+		:space-evenly false
+		(memory)
+		(cpu)
+		(disk)
+		(volume)
+		(brightness)
+		(battery))
+	(box :halign "end"
+		:orientation "h"
+		:class "r_bar"
+		:spacing 8
+		:space-evenly false
+		(date_time))))
+
+(defwindow bar
+	:monitor 0
+	:exclusive true
+		:geometry (geometry 
+		:x "0%"
+		:y "1%"
+		:width "98.5%"
+		:height "10px"
+		:anchor "top center")
+		(main_bar))

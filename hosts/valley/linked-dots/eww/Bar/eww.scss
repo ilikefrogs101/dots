@@ -1,0 +1,36 @@
+* {
+    all: unset;
+    font-weight: bolder;
+}
+
+.l_bar {
+    color: #ebdbb2;
+    background-color: #282828;
+    border-radius: 15;
+    border: solid 1 #ebdbb2;
+}
+.c_bar {
+    color: #ebdbb2;
+    background-color: #282828;
+    border-radius: 15;
+    border: solid 1 #ebdbb2;
+}
+.r_bar {
+    color: #ebdbb2;
+    background-color: #282828;
+    border-radius: 15;
+    border: solid 1 #ebdbb2;
+}
+
+.text-module {
+    margin: 10 10;
+    font-weight: 700;
+}
+.text-module-tool-tip {
+    background-color: rgba(40, 40, 40, 0.75);
+    color: rgba(235, 219, 178, 0.95);
+    border-radius: 5;
+    border: solid 1 rgba(235, 219, 178, 0.75);
+    margin: 10 10;
+    padding: 10 10;
+}

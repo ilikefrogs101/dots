@@ -27,17 +27,24 @@
       formatter.x86_64-linux = pkgs.nixpkgs-fmt;
 
       nixosConfigurations = {
-        someone = lib.nixosSystem {
+        plateau = lib.nixosSystem {
           modules = [
-            ./hosts/someone/configuration/configuration.nix
-            ./hosts/someone/home/home.nix
+            ./hosts/plateau/configuration/configuration.nix
+            ./hosts/plateau/home/home.nix
           ];
           specialArgs = { inherit inputs; };
         };
-        someone_server = lib.nixosSystem {
+        valley = lib.nixosSystem {
           modules = [
-            ./hosts/someone_server/configuration/configuration.nix
-            ./hosts/someone_server/home/home.nix
+            ./hosts/valley/configuration/configuration.nix
+            ./hosts/valley/home/home.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+        basin = lib.nixosSystem {
+          modules = [
+            ./hosts/basin/configuration/configuration.nix
+            ./hosts/basin/home/home.nix
           ];
           specialArgs = { inherit inputs; };
         };
