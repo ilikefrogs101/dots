@@ -6,7 +6,7 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchurl {
     url = "https://languagetools-153419.appspot.com/fonts/Inupiaq/GentiumKaktovik.ttf";
-    sha256 = "sha256-KVDVkBDK9rmzNbiburpHlI9g6b/5j59FH5a0Fq23vwg=";
+    sha256 = "sha256-Oc72M2KwhRQ8SFlA37bObav9cJWitQMMRZIslgtNvcw=";
   };
 
   phases = [ "installPhase" ];
