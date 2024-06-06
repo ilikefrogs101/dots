@@ -1,8 +1,8 @@
 { pkgs, inputs, ... }:
 {
   programs.nix-index =
-  {
-    enable = true;
-    enableFishIntegration = true;
-  };
+    {
+      enable = true;
+      enableFishIntegration = true;
+    };
 }

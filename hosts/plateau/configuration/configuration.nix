@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, lib, pkgs, inputs, ... }:
 let
   godot4-dotnet = pkgs.callPackage ../../../packages-modules/packages/godot4-dotnet/default.nix { };
@@ -28,10 +25,6 @@ in
   # OpenGL
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [ intel-media-driver ];
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Set your time zone.
   time.timeZone = "Australia/Sydney";
@@ -73,11 +66,9 @@ in
   # Set package settings configuration
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Packages 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search
   environment.systemPackages = with pkgs; [
     # Personal
     librewolf

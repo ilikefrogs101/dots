@@ -24,8 +24,8 @@ in
     gtk3.extraConfig = pkgs.lib.mkDefault { gtk-application-prefer-dark-theme = true; };
     gtk4.extraConfig = pkgs.lib.mkDefault { gtk-application-prefer-dark-theme = true; };
   };
- 
- xdg.systemDirs.data = [
+
+  xdg.systemDirs.data = [
     "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
     "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
   ];

@@ -36,10 +36,10 @@
     userControlled.enable = true;
   };
   system.userActivationScripts.rfkillUnblockAll = {
-      text = ''
+    text = ''
       rfkill unblock all
-      '';
-      deps = [];
+    '';
+    deps = [ ];
   };
 
   # Bluetooth
