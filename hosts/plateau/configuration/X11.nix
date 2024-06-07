@@ -10,6 +10,7 @@
 
   services.xserver = {
     enable = true;
+    videoDrivers = [ "amdgpu" ]; 
     displayManager.startx.enable = true;
     xkb = {
       layout = "us(colemak_dh),au";

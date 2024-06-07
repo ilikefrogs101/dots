@@ -17,14 +17,14 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.kernelModules = [ "amdgpu" ]; 
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Touchscreen and Stylus
   hardware.opentabletdriver.enable = true;
 
   # OpenGL
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [ intel-media-driver ];
 
   # Set your time zone.
   time.timeZone = "Australia/Sydney";
@@ -75,14 +75,13 @@ in
     signal-desktop
     mullvad-browser
     webcord
-    godot4-dotnet
+    #godot4-dotnet
     wordy
     blender
     prismlauncher
     zig
     zls
     asciiquarium-transparent
-    texliveMedium
 
     # Essential
     firefox
