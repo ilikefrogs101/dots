@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs-stable = { url = "github:nixos/nixpkgs/nixos-24.05"; };
     nixpkgs-unstable = { url = "github:nixos/nixpkgs/nixos-unstable"; };
+    nixos-hardware = { url = "github:NixOS/nixos-hardware/master"; };
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -29,6 +30,8 @@
       nixosConfigurations = {
         plateau = lib.nixosSystem {
           modules = [
+	    inputs.nixos-hardware.nixosModules.common-pc-laptop
+
             ./hosts/plateau/configuration/configuration.nix
             ./hosts/plateau/home/home.nix
           ];
@@ -36,6 +39,8 @@
         };
         valley = lib.nixosSystem {
           modules = [
+	    inputs.nixos-hardware.nixosModules.common-pc-laptop
+
             ./hosts/valley/configuration/configuration.nix
             ./hosts/valley/home/home.nix
           ];
