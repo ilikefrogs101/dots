@@ -60,6 +60,8 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
   users.users.ilikefrogs101 = {
     isNormalUser = true;
     description = "ilikefrogs101";
@@ -79,14 +81,15 @@ in
     signal-desktop
     mullvad-browser
     webcord
-    godot4-dotnet
+    #godot4-dotnet
     wordy
     blender
     prismlauncher
     zig
     zls
     asciiquarium-transparent
-    texliveMedium
+    anki
+    bubblewrap
 
     # Essential
     firefox
