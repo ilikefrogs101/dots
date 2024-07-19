@@ -1,8 +1,0 @@
-prefix=/home/ilikefrogs101/Downloads/river-0.3.4/zig-out
-datadir=${prefix}/share
-pkgdatadir=${datadir}/river-protocols
-
-Name: river-protocols
-URL: https://codeberg.org/river/river
-Description: protocol files for the river wayland compositor
-Version: 0.3.4
